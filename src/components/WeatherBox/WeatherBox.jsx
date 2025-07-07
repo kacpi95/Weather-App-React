@@ -1,3 +1,9 @@
+import PickCity from '../PickCity/PickCity';
+
 export default function WeatherBox() {
-  return;
+  return (
+    <section>
+      <PickCity />
+    </section>
+  );
 }
