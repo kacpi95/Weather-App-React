@@ -7,10 +7,13 @@ import ErrorBox from '../ErrorBox/ErrorBox';
 export default function WeatherBox() {
   const [weatherData, setWeatherData] = useState(null);
   const [pending, setPending] = useState(false);
+  const [error, setError] = useState(false);
   const apiKey = 'a59cd3bff4fa19a9bc565a470325c635';
 
   const handleCityChange = useCallback((nameCity) => {
     setPending(true);
+    setError(false);
+
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${nameCity}&appid=${apiKey}&units=metric`
     )
@@ -25,6 +28,11 @@ export default function WeatherBox() {
         };
         setWeatherData(newWeatherData);
         setPending(false);
+      })
+      .catch(() => {
+        setError(true);
+        setPending(false);
+        setWeatherData(null);
       });
   }, []);
 
@@ -36,7 +44,7 @@ export default function WeatherBox() {
       ) : (
         <Loader />
       )}
-      <ErrorBox />
+      {error && <ErrorBox>There is no such city!</ErrorBox>}
     </section>
   );
 }
