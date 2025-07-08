@@ -1,9 +1,10 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import Loader from '../Loader/Loader';
 import PickCity from '../PickCity/PickCity';
 import WeatherSummary from '../WeatherSummary/WeatherSummary';
 
 export default function WeatherBox() {
+  const [weatherData, setWeatherData] = useState(null);
   const apiKey = 'a59cd3bff4fa19a9bc565a470325c635';
   const handleCityChange = useCallback((nameCity) => {
     fetch(
@@ -12,20 +13,20 @@ export default function WeatherBox() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        const weatherData = {
+        const newWeatherData = {
           city: data.name,
           temp: data.main.temp,
           icon: data.weather[0].icon,
           description: data.weather[0].main,
         };
-        return weatherData;
+        setWeatherData(newWeatherData);
       });
   }, []);
 
   return (
     <section>
       <PickCity action={handleCityChange} />
-      <WeatherSummary />
+      <WeatherSummary weatherData={weatherData} />
       <Loader />
     </section>
   );
