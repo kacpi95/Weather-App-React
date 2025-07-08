@@ -2,7 +2,7 @@ import styles from './WeatherSummary.module.scss';
 
 export default function WeatherSummary() {
   return (
-    <section className={styles.WeatherSummary}>
+    <section className={styles.weatherSummary}>
       <img
         className={styles.weatherIcon}
         src='/images/weather-icons/13d.png'
