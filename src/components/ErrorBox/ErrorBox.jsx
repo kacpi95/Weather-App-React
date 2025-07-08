@@ -5,7 +5,7 @@ export default function ErrorBox({ children }) {
   return (
     <div className={styles.errorBox}>
       <h1>
-        <span className='fa fa-exclamation-triangle'>Error</span>
+        <span className='fa fa-exclamation-triangle'> Error</span>
       </h1>
       <p>{children}</p>
     </div>

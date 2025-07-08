@@ -4,5 +4,6 @@ import App from './App.jsx';
 import './styles/normalize.scss';
 import './styles/global.scss';
 import '@fortawesome/react-fontawesome';
+import 'font-awesome/css/font-awesome.min.css';
 
 createRoot(document.getElementById('root')).render(<App />);

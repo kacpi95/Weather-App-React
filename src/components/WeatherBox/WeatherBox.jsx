@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 import Loader from '../Loader/Loader';
 import PickCity from '../PickCity/PickCity';
 import WeatherSummary from '../WeatherSummary/WeatherSummary';
+import ErrorBox from '../ErrorBox/ErrorBox';
 
 export default function WeatherBox() {
   const [weatherData, setWeatherData] = useState(null);
@@ -35,6 +36,7 @@ export default function WeatherBox() {
       ) : (
         <Loader />
       )}
+      <ErrorBox />
     </section>
   );
 }
