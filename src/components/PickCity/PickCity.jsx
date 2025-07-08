@@ -8,16 +8,16 @@ export default function PickCity({ action }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    action({ city });
+    action(city);
   }
 
   return (
-    <form className={styles.pickCityForm}>
-      <label onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={styles.pickCityForm}>
+      <label>
         <TextInput
           placeholder='Enter city name...'
           value={city}
-          onChange={(e) => setCIty(e.targer.value)}
+          onChange={(e) => setCIty(e.target.value)}
         />
       </label>
       <Button>Search</Button>
