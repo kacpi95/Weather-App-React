@@ -4,11 +4,12 @@ import { useState } from 'react';
 import Button from '../Button/Button';
 
 export default function PickCity({ action }) {
-  const [city, setCIty] = useState('');
+  const [city, setCity] = useState('');
 
   function handleSubmit(e) {
     e.preventDefault();
     action(city);
+    setCity('');
   }
 
   return (
@@ -17,7 +18,7 @@ export default function PickCity({ action }) {
         <TextInput
           placeholder='Enter city name...'
           value={city}
-          onChange={(e) => setCIty(e.target.value)}
+          onChange={(e) => setCity(e.target.value)}
         />
       </label>
       <Button>Search</Button>
