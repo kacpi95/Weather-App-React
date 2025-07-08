@@ -3,6 +3,7 @@ import styles from './WeatherSummary.module.scss';
 export default function WeatherSummary({ weatherData }) {
   if (!weatherData) return null;
   const { city, icon, temp, description } = weatherData;
+
   return (
     <section className={styles.weatherSummary}>
       <img

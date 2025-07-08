@@ -5,8 +5,11 @@ import WeatherSummary from '../WeatherSummary/WeatherSummary';
 
 export default function WeatherBox() {
   const [weatherData, setWeatherData] = useState(null);
+  const [pending, setPending] = useState(false);
   const apiKey = 'a59cd3bff4fa19a9bc565a470325c635';
+
   const handleCityChange = useCallback((nameCity) => {
+    setPending(true);
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${nameCity}&appid=${apiKey}&units=metric`
     )
@@ -20,14 +23,18 @@ export default function WeatherBox() {
           description: data.weather[0].main,
         };
         setWeatherData(newWeatherData);
+        setPending(false);
       });
   }, []);
 
   return (
     <section>
       <PickCity action={handleCityChange} />
-      <WeatherSummary weatherData={weatherData} />
-      <Loader />
+      {pending === false ? (
+        <WeatherSummary weatherData={weatherData} />
+      ) : (
+        <Loader />
+      )}
     </section>
   );
 }
